@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
+import classNames from 'classnames';
 import {dictionary} from './words.json';
 import './Hangman.css';
 
-const HANGMAN_COMPLETE_VALUE = 6;
+const COMPLETE_HANGMAN_SEQUENCE = [0, 1, 2, 3, 4, 5, 6];
 
 export default function Hangman() {
   const [word, setWord] = useState();
   const [wordBlanks, setWordBlanks] = useState();
   const [inputValue, setInputValue] = useState('');
-  const [hangmanProgress, setHangmanProgress] = useState(0);
+  const [hangmanProgress, setHangmanProgress] = useState([0]);
   const [gameInProgress, setGameInProgress] = useState(false);
   const [gameWon, setGameWon] = useState();
   const [guessedLetters, setGuessedLetters] = useState({
@@ -18,27 +19,28 @@ export default function Hangman() {
   const [showRepeatGuessMessage, setShowRepeatGuessMessage] = useState(false);
 
   useEffect(() => {
-    if (
-      hangmanProgress < HANGMAN_COMPLETE_VALUE &&
-      !wordBlanks?.includes('_')
-    ) {
-      setGameWon(true);
-      resetGame();
-    }
-  }, [hangmanProgress, wordBlanks]);
+    const win =
+      hangmanProgress.length !== COMPLETE_HANGMAN_SEQUENCE.length &&
+      word?.every((letter) => guessedLetters.correct.includes(letter));
+    const lose = hangmanProgress.length === COMPLETE_HANGMAN_SEQUENCE.length;
 
-  useEffect(() => {
-    if (hangmanProgress === HANGMAN_COMPLETE_VALUE) {
-      setGameWon(false);
-      resetGame();
+    if (win) {
+      setGameWon(true);
+      setGameInProgress(false);
     }
-  }, [hangmanProgress, word]);
+
+    if (lose) {
+      setGameWon(false);
+      setGameInProgress(false);
+    }
+  }, [guessedLetters, hangmanProgress, word]);
 
   const guessedLetterBank = formattedGuessedLetters();
 
   const gameOverMessage = gameWon
     ? 'You win!'
-    : `You lose! The word was: ${word?.join('')}`;
+    : `You lose! The word was ${word?.join('').toUpperCase()}`;
+
   return (
     <div className="Board">
       <div className="Word">
@@ -55,6 +57,7 @@ export default function Hangman() {
               onKeyDown={handleGuess}
               value={inputValue}
               maxLength={1}
+              disabled={gameWon !== undefined}
             />
             {showRepeatGuessMessage && <p>Letter already guessed</p>}
             <div className="GuessedLetters">{guessedLetterBank}</div>
@@ -70,12 +73,42 @@ export default function Hangman() {
 
       <div className="Hangman">
         <div className="Hangman__gallows">
-          <div className="Hangman__head">
-            <div className="Hangman__torso"></div>
-            <div className="Hangman__left-arm"></div>
-            <div className="Hangman__right-arm"></div>
-            <div className="Hangman__left-leg"></div>
-            <div className="Hangman__right-leg"></div>
+          <div
+            className={classNames({
+              Hangman__head: true,
+              VisibleHangmanPart: hangmanProgress.includes(1),
+            })}
+          >
+            <div
+              className={classNames({
+                Hangman__torso: true,
+                VisibleHangmanPart: hangmanProgress.includes(2),
+              })}
+            ></div>
+            <div
+              className={classNames({
+                'Hangman__left-arm': true,
+                VisibleHangmanPart: hangmanProgress.includes(3),
+              })}
+            ></div>
+            <div
+              className={classNames({
+                'Hangman__right-arm': true,
+                VisibleHangmanPart: hangmanProgress.includes(4),
+              })}
+            ></div>
+            <div
+              className={classNames({
+                'Hangman__left-leg': true,
+                VisibleHangmanPart: hangmanProgress.includes(5),
+              })}
+            ></div>
+            <div
+              className={classNames({
+                'Hangman__right-leg': true,
+                VisibleHangmanPart: hangmanProgress.includes(6),
+              })}
+            ></div>
           </div>
         </div>
       </div>
@@ -104,7 +137,16 @@ export default function Hangman() {
       if (guessedLetters.incorrect.includes(inputValue)) {
         setShowRepeatGuessMessage(true);
       } else {
-        setHangmanProgress(hangmanProgress + 1);
+        console.log('hangmanProgress', hangmanProgress);
+        const nextHangmanSequence = hangmanProgress.length - 1 + 1;
+        console.log('nextHangmanSequence', nextHangmanSequence);
+        if (
+          nextHangmanSequence <=
+          COMPLETE_HANGMAN_SEQUENCE[COMPLETE_HANGMAN_SEQUENCE.length - 1]
+        ) {
+          setHangmanProgress([...hangmanProgress, nextHangmanSequence]);
+        }
+
         setGuessedLetters({
           ...guessedLetters,
           incorrect: [...guessedLetters.incorrect, inputValue],
@@ -152,13 +194,9 @@ export default function Hangman() {
     });
   }
 
-  function resetGame() {
-    setGameInProgress(false);
-    setHangmanProgress(0);
-    setGuessedLetters({correct: [], incorrect: []});
-  }
-
   function getRandomWord() {
+    setHangmanProgress([0]);
+    setGuessedLetters({correct: [], incorrect: []});
     setGameWon(undefined);
     setGameInProgress(true);
 
