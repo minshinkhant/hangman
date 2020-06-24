@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Hangman from './Hangman';
+import Board from './Board';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Hangman />
+    <Board />
   </React.StrictMode>,
   document.getElementById('root')
 );

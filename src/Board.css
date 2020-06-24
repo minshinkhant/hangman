@@ -1,0 +1,73 @@
+.Board {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-gap: 5rem;
+  padding: 30px;
+  color: #333;
+}
+
+.Board__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Board__hangman {
+  display: flex;
+}
+
+.Button {
+  max-height: 100px;
+  padding: 20px 30px;
+  background-color: #fff;
+  border: 5px solid #333;
+  border-radius: 5px;
+  font-family: 'Architects Daughter', Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.Button:hover {
+  cursor: pointer;
+}
+
+.Input {
+  max-width: 50px;
+  padding: 20px;
+  border: 5px solid #333;
+  border-radius: 5px;
+  background-color: #fff;
+  font-family: 'Architects Daughter', Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.WordBlanks {
+  font-size: 6rem;
+  letter-spacing: 2rem;
+  text-transform: uppercase;
+}
+
+.IncorrectGuess {
+  color: #ff0000;
+}
+
+.GuessedLetters {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1rem;
+  text-transform: uppercase;
+}
+
+.AlreadyGuessed {
+  font-size: 1.2rem;
+}
+
+.GameOverMessage {
+  text-align: center;
+  font-size: 3rem;
+}
