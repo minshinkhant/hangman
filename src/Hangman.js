@@ -8,39 +8,37 @@ export default function Hangman() {
   const [gameInProgress, setGameInProgress] = useState(false);
 
   return (
-    <>
-      <div className="Board">
-        <div className="Word">
-          {gameInProgress ? (
-            <>
-              <p className="MysteryWord">{mysteryWord}</p>
-              <input
-                type="text"
-                className="Input"
-                onChange={handleGuess}
-                maxLength={1}
-              />
-            </>
-          ) : (
-            <button className="Button" onClick={getRandomWord}>
-              New Game
-            </button>
-          )}
-        </div>
+    <div className="Board">
+      <div className="Word">
+        {gameInProgress ? (
+          <>
+            <p className="MysteryWord">{mysteryWord}</p>
+            <input
+              type="text"
+              className="Input"
+              onChange={handleGuess}
+              maxLength={1}
+            />
+          </>
+        ) : (
+          <button className="Button" onClick={getRandomWord}>
+            New Game
+          </button>
+        )}
+      </div>
 
-        <div className="Hangman">
-          <div className="Hangman__gallows">
-            <div className="Hangman__head">
-              <div className="Hangman__torso"></div>
-              <div className="Hangman__left-arm"></div>
-              <div className="Hangman__right-arm"></div>
-              <div className="Hangman__left-leg"></div>
-              <div className="Hangman__right-leg"></div>
-            </div>
+      <div className="Hangman">
+        <div className="Hangman__gallows">
+          <div className="Hangman__head">
+            <div className="Hangman__torso"></div>
+            <div className="Hangman__left-arm"></div>
+            <div className="Hangman__right-arm"></div>
+            <div className="Hangman__left-leg"></div>
+            <div className="Hangman__right-leg"></div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 
   function getRandomWord() {
