@@ -22,19 +22,15 @@ export default function Hangman() {
       hangmanProgress < HANGMAN_COMPLETE_VALUE &&
       !wordBlanks?.includes('_')
     ) {
-      setGameInProgress(false);
       setGameWon(true);
-      setHangmanProgress(0);
-      setGuessedLetters({correct: [], incorrect: []});
+      resetGame();
     }
   }, [hangmanProgress, wordBlanks]);
 
   useEffect(() => {
     if (hangmanProgress === HANGMAN_COMPLETE_VALUE) {
-      setGameInProgress(false);
       setGameWon(false);
-      setHangmanProgress(0);
-      setGuessedLetters({correct: [], incorrect: []});
+      resetGame();
     }
   }, [hangmanProgress, word]);
 
@@ -154,6 +150,12 @@ export default function Hangman() {
         </p>
       );
     });
+  }
+
+  function resetGame() {
+    setGameInProgress(false);
+    setHangmanProgress(0);
+    setGuessedLetters({correct: [], incorrect: []});
   }
 
   function getRandomWord() {
