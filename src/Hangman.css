@@ -1,3 +1,116 @@
 .Board {
-  border: 1px solid blue;
+  padding: 30px;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.Word {
+  flex: 2;
+  text-align: center;
+}
+
+.Button {
+  justify-content: center;
+  padding: 20px 30px;
+  border: 3px solid #333;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 2rem;
+}
+
+.Input {
+  font-size: 2rem;
+  border: none;
+  border-bottom: 3px solid #333;
+  padding: 20px;
+  text-align: center;
+  max-width: 50px;
+}
+
+.Button:hover {
+  cursor: pointer;
+  border-color: goldenrod;
+}
+
+.MysteryWord {
+  font-size: 5rem;
+  letter-spacing: 2rem;
+}
+
+.Hangman {
+  flex: 1;
+}
+
+.Hangman__gallows {
+  height: 500px;
+  max-width: 200px;
+  padding-right: 100px;
+  border-top: 10px solid goldenrod;
+  border-right: 10px solid goldenrod;
+  border-radius: 5px;
+}
+
+.Hangman__head {
+  border: 3px solid green;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 10px solid #333;
+  position: relative;
+  visibility: hidden;
+}
+
+.Hangman__torso {
+  height: 200px;
+  width: 10px;
+  background-color: #333;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  visibility: hidden;
+}
+
+.Hangman__left-arm {
+  height: 130px;
+  width: 10px;
+  background-color: #333;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 90px;
+  visibility: hidden;
+}
+
+.Hangman__right-arm {
+  height: 130px;
+  width: 10px;
+  background-color: #333;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 90px;
+  left: 100%;
+  visibility: hidden;
+}
+
+.Hangman__left-leg {
+  height: 130px;
+  width: 10px;
+  background-color: #333;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 275px;
+  left: 5%;
+  visibility: hidden;
+}
+
+.Hangman__right-leg {
+  height: 130px;
+  width: 10px;
+  background-color: #333;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 275px;
+  left: 95%;
+  visibility: hidden;
 }
