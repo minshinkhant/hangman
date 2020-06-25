@@ -1,5 +1,6 @@
 {
   "name": "hangman",
+  "homepage": "https://lm-hangman.netlify.app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
