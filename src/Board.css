@@ -23,7 +23,7 @@
   background-color: #fff;
   border: 5px solid #333;
   border-radius: 5px;
-  font-family: 'Architects Daughter', Arial, Helvetica, sans-serif;
+  font-family: 'Balsamiq Sans', Arial, Helvetica, sans-serif;
   font-size: 2rem;
   text-transform: uppercase;
 }
@@ -38,14 +38,14 @@
   border: 5px solid #333;
   border-radius: 5px;
   background-color: #fff;
-  font-family: 'Architects Daughter', Arial, Helvetica, sans-serif;
+  font-family: 'Balsamiq Sans', Arial, Helvetica, sans-serif;
   font-size: 2rem;
   text-align: center;
   text-transform: uppercase;
 }
 
 .WordBlanks {
-  font-size: 6rem;
+  font-size: 5rem;
   letter-spacing: 2rem;
   text-transform: uppercase;
 }
@@ -58,7 +58,6 @@
   display: flex;
   justify-content: center;
   font-size: 2rem;
-  font-weight: bold;
   letter-spacing: 1rem;
   text-transform: uppercase;
 }
