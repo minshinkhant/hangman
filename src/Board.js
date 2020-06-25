@@ -17,6 +17,7 @@ export default function Board() {
     incorrect: [],
   });
   const [showRepeatGuessMessage, setShowRepeatGuessMessage] = useState(false);
+  const [showInvalidCharMessage, setShowInvalidCharMessage] = useState(false);
 
   useEffect(() => {
     const win =
@@ -41,6 +42,8 @@ export default function Board() {
     ? 'You win!'
     : `You lose! The word was ${word?.join('').toUpperCase()}`;
 
+  const invalidCharRegex = /[^a-zA-Z_]/;
+
   return (
     <div className="Board">
       <div className="Board__content">
@@ -60,7 +63,10 @@ export default function Board() {
               disabled={gameWon !== undefined}
             />
             {showRepeatGuessMessage && (
-              <p className="AlreadyGuessed">Letter already guessed</p>
+              <p className="PlayerMessage">Letter already guessed</p>
+            )}
+            {showInvalidCharMessage && (
+              <p className="PlayerMessage">Invalid character</p>
             )}
             <div className="GuessedLetters">{guessedLetterBank}</div>
           </>
@@ -78,11 +84,17 @@ export default function Board() {
 
   function handleInputChange(event) {
     setShowRepeatGuessMessage(false);
+    setShowInvalidCharMessage(false);
     setInputValue(event.target.value);
   }
 
   function handleGuess(event) {
     if (event.keyCode !== 13) return;
+
+    if (inputValue.match(invalidCharRegex)) {
+      setShowInvalidCharMessage(true);
+      return setInputValue('');
+    }
 
     if (word.includes(inputValue)) {
       if (guessedLetters.correct.includes(inputValue)) {
