@@ -3,79 +3,80 @@
 }
 
 .Hangman__gallows {
-  max-width: 200px;
-  height: 500px;
+  width: 100px;
+  height: 375px;
   padding-right: 100px;
-  border-top: 7px solid #333;
-  border-right: 7px solid #333;
+  border-top: 7px solid var(--black);
+  border-right: 7px solid var(--black);
   border-radius: 3px;
 }
 
 .Hangman__head {
-  width: 100px;
-  height: 100px;
+  width: 65px;
+  height: 65px;
   position: relative;
   visibility: hidden;
   border-radius: 50%;
-  border: 7px solid #333;
+  border: 7px solid var(--black);
 }
 
 .Hangman__torso {
   width: 7px;
-  height: 200px;
+  height: 140px;
   position: absolute;
-  top: 100px;
+  top: 70px;
   left: 50%;
   visibility: hidden;
-  background-color: #333;
-  border-radius: 5px;
+  background-color: var(--black);
+  border-radius: var(--border-radius);
 }
 
 .Hangman__left-arm {
   width: 7px;
-  height: 145px;
+  height: 80px;
   position: absolute;
-  top: 90px;
+  top: 60px;
+  left: 10%;
   transform: rotate(45deg);
   visibility: hidden;
-  background-color: #333;
-  border-radius: 5px;
+  background-color: var(--black);
+  border-radius: var(--border-radius);
 }
 
 .Hangman__right-arm {
   width: 7px;
-  height: 145px;
+  height: 80px;
   position: absolute;
-  top: 90px;
-  left: 100%;
+  top: 60px;
+  left: 90%;
   transform: rotate(-45deg);
   visibility: hidden;
-  background-color: #333;
-  border-radius: 5px;
+  background-color: var(--black);
+  border-radius: var(--border-radius);
 }
 
 .Hangman__left-leg {
   width: 7px;
-  height: 130px;
+  height: 80px;
   position: absolute;
-  top: 275px;
-  left: 5%;
+  top: 190px;
+  left: 10%;
   transform: rotate(45deg);
   visibility: hidden;
-  background-color: #333;
-  border-radius: 5px;
+  background-color: var(--black);
+  border-radius: var(--border-radius);
 }
 
 .Hangman__right-leg {
   width: 7px;
-  height: 130px;
+  height: 80px;
   position: absolute;
-  top: 275px;
-  left: 95%;
+  top: 190px;
+  left: 90%;
   transform: rotate(-45deg);
   visibility: hidden;
-  background-color: #333;
-  border-radius: 5px;
+  background-color: var(--black);
+  border-radius: var(--border-radius);
 }
 
 .VisibleHangmanPart {

@@ -62,12 +62,7 @@ export default function Board() {
               maxLength={1}
               disabled={gameWon !== undefined}
             />
-            {showRepeatGuessMessage && (
-              <p className="PlayerMessage">Letter already guessed</p>
-            )}
-            {showInvalidCharMessage && (
-              <p className="PlayerMessage">Invalid character</p>
-            )}
+            <p className="PlayerMessage">{playerMessage()}</p>
             <div className="GuessedLetters">{guessedLetterBank}</div>
           </>
         ) : (
@@ -160,6 +155,11 @@ export default function Board() {
         </p>
       );
     });
+  }
+
+  function playerMessage() {
+    if (showRepeatGuessMessage) return 'Letter already guessed';
+    if (showInvalidCharMessage) return 'Invalid character';
   }
 
   function getRandomWord() {
